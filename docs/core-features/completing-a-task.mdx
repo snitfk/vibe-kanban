@@ -1,68 +1,68 @@
 ---
-title: "Completing a Task"
-description: "Learn how to complete tasks by rebasing, merging, and managing pull requests directly from Vibe Kanban"
-sidebarTitle: "Completing a Task"
+title: "完成任务"
+description: "了解如何通过变基、合并以及直接从 Vibe Kanban 管理拉取请求来完成任务"
+sidebarTitle: "完成任务"
 ---
 
-When your task is finished, Vibe Kanban provides integrated git operations to keep your branch up-to-date and merge your work back into the base branch.
+当您的任务完成后，Vibe Kanban 提供集成的 git 操作，以保持分支最新并将工作合并回基础分支。
 
-## Git Operations Header
+## Git 操作标题
 
-At the top of the diff view, you'll see important branch information and actions:
+在差异视图顶部，您将看到重要的分支信息和操作：
 
 <Frame>
-<img src="/images/vk-diff-header.png" alt="Diff header showing branch information and action buttons" />
+<img src="/images/vk-diff-header.png" alt="差异标题显示分支信息和操作按钮" />
 </Frame>
 
-**Branch Information:**
-- **Task branch**: The branch your task is working on
-- **Target branch**: The branch you'll merge into (with cog button to change it)
-- **Commits ahead**: Number of commits your branch has that aren't in the target
-- **Commits behind**: Number of commits in the target that you don't have (enables rebase button when >0)
+**分支信息：**
+- **任务分支**：您的任务正在工作的分支
+- **目标分支**：您将合并到的分支（带有齿轮按钮以更改它）
+- **领先提交**：您的分支拥有但目标分支没有的提交数量
+- **落后提交**：目标分支中您没有的提交数量（>0 时启用变基按钮）
 
-**Actions:**
-- **Merge**: Merge your changes into the target branch
-- **Create PR**: Create a pull request on GitHub
-- **Rebase**: Update your branch with the latest changes from the target branch
+**操作：**
+- **合并**：将您的更改合并到目标分支
+- **创建 PR**：在 GitHub 上创建拉取请求
+- **变基**：使用目标分支的最新更改更新您的分支
 
-## Rebase
+## 变基
 
-Click **Rebase** to update your branch with the latest changes from the target branch. This keeps your branch up-to-date and maintains a clean history.
+点击**变基**以使用目标分支的最新更改更新您的分支。这使您的分支保持最新并维护干净的历史记录。
 
-If conflicts occur, see [Resolving Rebase Conflicts](/core-features/resolving-rebase-conflicts).
+如果发生冲突，请参阅[解决变基冲突](/core-features/resolving-rebase-conflicts)。
 
-## Merge
+## 合并
 
-Click **Merge** to integrate your completed work into the target branch. Your task will automatically move to the **Done** column, and the worktree is cleaned up automatically. The branch remains until you manually delete it.
+点击**合并**将已完成的工作集成到目标分支中。您的任务将自动移至**完成**列，工作树会自动清理。分支会保留，直到您手动删除它。
 
 <Tip>
-If you're working with GitHub, consider creating a pull request instead of merging directly. This allows for team review and CI checks.
+如果您正在使用 GitHub，请考虑创建拉取请求而不是直接合并。这允许团队审查和 CI 检查。
 </Tip>
 
-## Pull Request Management
+## 拉取请求管理
 
-### Creating a Pull Request
+### 创建拉取请求
 
-Click **Create PR** to create a pull request on GitHub. The title and description are auto-populated from your task details.
-
-<Frame>
-<img src="/images/vk-pr-open.png" alt="Header showing disabled Push button after pull request creation" />
-</Frame>
-
-After creating the PR, the button changes to **Push** (initially disabled until you make more changes).
-
-### Updating a Pull Request
-
-When you continue working after creating a PR, the **Push** button becomes enabled. Click it to push your latest changes to the pull request.
+点击**创建 PR**在 GitHub 上创建拉取请求。标题和描述会自动从您的任务详情填充。
 
 <Frame>
-<img src="/images/vk-pr-with-push.png" alt="Header showing enabled Push button with new changes ready" />
+<img src="/images/vk-pr-open.png" alt="标题显示创建拉取请求后禁用的推送按钮" />
 </Frame>
 
-When your PR is merged on GitHub, your task automatically moves to **Done**.
+创建 PR 后，按钮更改为**推送**（在您进行更多更改之前最初被禁用）。
 
-## Related Documentation
+### 更新拉取请求
 
-- [Resolving Rebase Conflicts](/core-features/resolving-rebase-conflicts) - Handle conflicts during rebasing
-- [GitHub Integration](/integrations/github-integration) - Set up GitHub CLI integration
-- [Creating Projects](/core-features/creating-projects) - Configure base branches and project settings
+当您在创建 PR 后继续工作时，**推送**按钮会启用。点击它以将最新更改推送到拉取请求。
+
+<Frame>
+<img src="/images/vk-pr-with-push.png" alt="标题显示启用的推送按钮，新更改已准备好" />
+</Frame>
+
+当您的 PR 在 GitHub 上合并时，您的任务会自动移至**完成**。
+
+## 相关文档
+
+- [解决变基冲突](/core-features/resolving-rebase-conflicts) - 处理变基期间的冲突
+- [GitHub 集成](/integrations/github-integration) - 设置 GitHub CLI 集成
+- [创建项目](/core-features/creating-projects) - 配置基础分支和项目设置

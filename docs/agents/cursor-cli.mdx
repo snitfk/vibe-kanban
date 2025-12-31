@@ -1,29 +1,29 @@
 ---
 title: "Cursor Agent CLI"
-description: "Set up Cursor's command-line agent"
+description: "设置 Cursor 的命令行代理"
 icon: https://www.vibekanban.com/images/logos/cursor-logo-light.png
 ---
 
 <Steps>
-<Step title="Install Cursor Agent CLI">
+<Step title="安装 Cursor Agent CLI">
   ```bash
   curl https://cursor.com/install -fsS | bash
   ```
 
-  Verify installation with `cursor-agent --version`. For more details, see the [official installation guide](https://docs.cursor.com/en/cli/installation).
+  使用 `cursor-agent --version` 验证安装。有关更多详细信息，请参阅[官方安装指南](https://docs.cursor.com/en/cli/installation)。
 </Step>
 
-<Step title="Follow the login instructions">
-  Sign in with `cursor-agent login` (opens a browser). You can also set the `CURSOR_API_KEY` environment variable. Full instructions: https://docs.cursor.com/en/cli/reference/authentication
+<Step title="按照登录说明操作">
+  使用 `cursor-agent login` 登录（打开浏览器）。您也可以设置 `CURSOR_API_KEY` 环境变量。完整说明：https://docs.cursor.com/en/cli/reference/authentication
 </Step>
 
-<Step title="Start Vibe Kanban">
-  Once authenticated, launch Vibe Kanban:
+<Step title="启动 Vibe Kanban">
+  认证后，启动 Vibe Kanban：
 
   ```bash
   npx vibe-kanban
   ```
 
-  You can now select Cursor Agent CLI when creating task attempts.
+  您现在可以在创建任务尝试时选择 Cursor Agent CLI。
 </Step>
 </Steps>

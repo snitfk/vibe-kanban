@@ -1,52 +1,52 @@
 ---
-title: "Creating Projects"
-description: "Learn how to create and configure projects in Vibe Kanban"
+title: "创建项目"
+description: "了解如何在 Vibe Kanban 中创建和配置项目"
 ---
 
-Before you can create tasks and execute coding agents, you must create a project.
+在创建任务和执行编程代理之前，您必须创建一个项目。
 
 <Frame>
-<img src="/images/vk-create-project.png" alt="Create project dialog showing options to create from existing git repository or blank project" />
+<img src="/images/vk-create-project.png" alt="创建项目对话框显示从现有 git 仓库创建或空白项目的选项" />
 </Frame>
 
-## Creating Your Project
-Click the **Create Project** button to choose from two options:
-- **From existing git repository**: Browse your file system and select from a list of git repositories sorted by recent activity
-- **Create blank project**: Generate a new git repository from scratch
-Each project represents a git repository. After creation, you can configure it with setup scripts, dev server scripts, and other settings.
+## 创建您的项目
+点击**创建项目**按钮从两个选项中选择：
+- **从现有 git 仓库**：浏览您的文件系统并从按最近活动排序的 git 仓库列表中选择
+- **创建空白项目**：从头开始生成新的 git 仓库
+每个项目代表一个 git 仓库。创建后，您可以使用设置脚本、开发服务器脚本和其他设置对其进行配置。
 
 
 <Note>
-After creating a project, you need to press the settings button in the top right to configure project scripts and settings.
+创建项目后，您需要按右上角的设置按钮来配置项目脚本和设置。
 </Note>
 
-## Project Settings
+## 项目设置
 
-Once you've created a project, you can access the project settings by clicking the settings button in the top right corner. From here, you can configure various aspects of your project.
+创建项目后，您可以通过点击右上角的设置按钮访问项目设置。从这里，您可以配置项目的各个方面。
 
-### Setup Scripts
+### 设置脚本
 
-Setup scripts will be run before the coding agent is executed. This is useful for installing dependencies, for example you might run `npm install` or `cargo build`. This will save you time as your agent won't need to figure out that these commands haven't already been run.
+设置脚本将在编程代理执行之前运行。这对于安装依赖项很有用，例如您可能运行 `npm install` 或 `cargo build`。这将节省您的时间，因为您的代理不需要弄清楚这些命令尚未运行。
 
 <Note>
-Each time a coding agent is executed it runs in a [git worktree](https://git-scm.com/docs/git-worktree) which is unlikely to contain your dependencies, configs, .env etc.
+每次执行编程代理时，它都在 [git 工作树](https://git-scm.com/docs/git-worktree)中运行，该工作树不太可能包含您的依赖项、配置、.env 等。
 </Note>
 
-### Dev Server Scripts
+### 开发服务器脚本
 
-The dev server script is run when you press the "Start Dev Server" button from the [Preview](/core-features/testing-your-application) section. It's useful for quickly reviewing work after a coding agent has run.
+当您从[预览](/core-features/testing-your-application)部分按下"启动开发服务器"按钮时，将运行开发服务器脚本。它对于在编程代理运行后快速审查工作很有用。
 
-### Cleanup Scripts
+### 清理脚本
 
-Cleanup scripts run after a coding agent finishes it's turn. You can use these to tidy up the workspace, remove temporary files, or perform any post-execution cleanup. For example, you might run `npm run format` to ensure your code is formatted correctly. Treat it like a git pre-commit hook.
+清理脚本在编程代理完成其回合后运行。您可以使用这些来整理工作区、删除临时文件或执行任何执行后清理。例如，您可能运行 `npm run format` 以确保代码格式正确。将其视为 git pre-commit 钩子。
 
 
-### Copy Files
+### 复制文件
 
-Comma-separated list of files to copy from the original project directory to the worktree. These files will be copied after the worktree is created but before the setup script runs. Useful for environment-specific files like `.env`, configuration files, and local settings.
+要从原始项目目录复制到工作树的文件的逗号分隔列表。这些文件将在创建工作树之后但在设置脚本运行之前复制。对于特定于环境的文件（如 `.env`、配置文件和本地设置）很有用。
 
 <Warning>
-Make sure these files are gitignored or they could get committed!
+确保这些文件被 gitignore，否则它们可能会被提交！
 </Warning>
 
 

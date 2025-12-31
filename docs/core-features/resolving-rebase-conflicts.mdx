@@ -1,57 +1,57 @@
 ---
-title: "Resolving Rebase Conflicts"
-description: "Learn how to handle rebase conflicts when your base branch has advanced, using either manual resolution or automatic conflict resolution with coding agents."
-sidebarTitle: "Resolving Rebase Conflicts"
+title: "解决变基冲突"
+description: "了解如何在基础分支前进时处理变基冲突，使用手动解决或编程代理自动冲突解决。"
+sidebarTitle: "解决变基冲突"
 ---
 
-## When You See "Rebase Conflicts"
+## 当您看到"变基冲突"时
 
-After clicking the rebase button, if your changes conflict with the base branch, your task status changes to "Rebase conflicts" and a conflict resolution banner appears.
-
-<Frame>
-<img src="/images/vk-rebase-conflicts-top.png" alt="Task showing rebase conflicts status with conflict resolution options" />
-</Frame>
-
-The conflict banner provides three options to resolve the situation:
+点击变基按钮后，如果您的更改与基础分支冲突，任务状态会变为"变基冲突"，并出现冲突解决横幅。
 
 <Frame>
-<img src="/images/vk-rebase-banner.png" alt="Conflict resolution banner showing the three available options" />
+<img src="/images/vk-rebase-conflicts-top.png" alt="显示变基冲突状态和冲突解决选项的任务" />
 </Frame>
 
-- **Resolve Conflicts** - Auto-generate resolution instructions for the coding agent
-- **Open in Editor** - Manually edit conflicted files
-- **Abort Rebase** - Cancel and return to previous state
-
-## Resolving Conflicts Automatically
-
-The simplest solution is to let the coding agent resolve conflicts automatically:
-
-1. Click **Resolve Conflicts** from the conflict banner to generate specific instructions tailored to your conflict situation and insert them into the follow-up message area.
-
-2. Review the generated instructions and click **Resolve Conflicts** (the Send button changes to this) to have the agent analyse the conflicted files and complete the rebase automatically.
+冲突横幅提供三个选项来解决情况：
 
 <Frame>
-<img src="/images/vk-rebase-conflicts-prompt.png" alt="Conflict resolution banner with auto-generated instructions in the follow-up field" />
+<img src="/images/vk-rebase-banner.png" alt="显示三个可用选项的冲突解决横幅" />
 </Frame>
 
-Once the agent completes the resolution, your task status will show *n* commits ahead and the **Merge** button becomes available again.
+- **解决冲突** - 为编程代理自动生成解决说明
+- **在编辑器中打开** - 手动编辑冲突文件
+- **中止变基** - 取消并返回到之前的状态
 
-## Manual Resolution (Alternative)
+## 自动解决冲突
 
-If you prefer to resolve conflicts manually, you have two options:
+最简单的解决方案是让编程代理自动解决冲突：
 
-**For single files:** Use **Open in Editor** from the conflict banner to edit one conflicted file at a time. After resolving and refreshing the page, you can press the button again for the next file.
+1. 从冲突横幅点击**解决冲突**，生成针对您冲突情况的特定说明，并将它们插入到后续消息区域。
 
-**For multiple files (recommended):** Click the triple dot icon at the top right of the task and select **Open in [Your IDE]** to open all worktree files in your chosen IDE, where you can resolve all conflicts at once.
+2. 查看生成的说明并点击**解决冲突**（发送按钮更改为此）以让代理分析冲突文件并自动完成变基。
+
+<Frame>
+<img src="/images/vk-rebase-conflicts-prompt.png" alt="冲突解决横幅，后续字段中有自动生成的说明" />
+</Frame>
+
+代理完成解决后，您的任务状态将显示领先 *n* 个提交，并且**合并**按钮再次可用。
+
+## 手动解决（替代方法）
+
+如果您更喜欢手动解决冲突，您有两个选项：
+
+**对于单个文件：** 使用冲突横幅中的**在编辑器中打开**一次编辑一个冲突文件。解决并刷新页面后，您可以再次按下按钮处理下一个文件。
+
+**对于多个文件（推荐）：** 点击任务右上角的三点图标并选择**在 [您的 IDE] 中打开**，在您选择的 IDE 中打开所有工作树文件，在那里您可以一次解决所有冲突。
 
 <Steps>
-<Step title="Open your IDE">
-  Click the triple dot icon at the top right and select **Open in [Your IDE]** to access all worktree files, or use **Open in Editor** from the banner for individual files.
+<Step title="打开您的 IDE">
+  点击右上角的三点图标并选择**在 [您的 IDE] 中打开**以访问所有工作树文件，或使用横幅中的**在编辑器中打开**处理单个文件。
 </Step>
 
-<Step title="Edit conflicted files">
-  Resolve merge markers in each file:
-  
+<Step title="编辑冲突文件">
+  解决每个文件中的合并标记：
+
   ```diff
   <<<<<<< HEAD (your changes)
   function newFeature() {
@@ -65,9 +65,9 @@ If you prefer to resolve conflicts manually, you have two options:
   ```
 </Step>
 
-<Step title="Continue the rebase">
-  After editing all conflicts, stage and continue:
-  
+<Step title="继续变基">
+  编辑所有冲突后，暂存并继续：
+
   ```bash
   git add .
   git rebase --continue
@@ -76,33 +76,33 @@ If you prefer to resolve conflicts manually, you have two options:
 </Steps>
 
 <Tip>
-Automatic resolution works best for most conflicts. Use manual resolution only when you need precise control over the merge decisions.
+自动解决对大多数冲突最有效。仅在需要精确控制合并决策时使用手动解决。
 </Tip>
 
-## Aborting a Rebase
+## 中止变基
 
-If you need to cancel the rebase entirely, click **Abort Rebase** to return to the "Rebase needed" state. You can then try rebasing again or create a new task attempt from the updated base branch.
+如果您需要完全取消变基，请点击**中止变基**返回到"需要变基"状态。然后您可以再次尝试变基，或从更新的基础分支创建新的任务尝试。
 
-## Rebasing onto a Different Base Branch
+## 变基到不同的基础分支
 
-If you've changed the base branch of your task attempt and see commits unrelated to your changes, you can use `git rebase --onto` to rebase only your work onto the new base:
+如果您已更改任务尝试的基础分支并看到与您的更改无关的提交，您可以使用 `git rebase --onto` 仅将您的工作变基到新基础：
 
 ```bash
 git rebase <last-commit-before-your-work> --onto <new-base>
 ```
 
-### Example Scenario
+### 示例场景
 
-You accidentally created a task attempt from the `develop` branch, but it should have been based on `main`. After changing the base branch to `main` in the task settings, you see commits from `develop` that aren't part of your work:
+您不小心从 `develop` 分支创建了任务尝试，但它应该基于 `main`。在任务设置中将基础分支更改为 `main` 后，您看到来自 `develop` 的提交，但这些不是您工作的一部分：
 
 ```bash
-# Find the last commit before your work started (e.g., in the git log)
-# Then rebase only your commits onto main
+# 找到您工作开始之前的最后一个提交（例如，在 git log 中）
+# 然后仅将您的提交变基到 main
 git rebase 64d504c94d076070d17affd3f84be63b34515445 --onto main
 ```
 
-This command takes your commits (everything after the specified commit hash) and replays them onto `main`, excluding the unrelated commits from `develop`.
+此命令获取您的提交（指定提交哈希之后的所有内容）并将它们重放到 `main` 上，排除来自 `develop` 的无关提交。
 
 <Warning>
-Use `git rebase --onto` carefully. Make sure you identify the correct commit hash—the last commit that isn't part of your current task. Consider creating a backup branch first: `git branch backup-branch`.
+小心使用 `git rebase --onto`。确保您识别正确的提交哈希——不属于当前任务的最后一个提交。考虑首先创建备份分支：`git branch backup-branch`。
 </Warning>

@@ -1,48 +1,48 @@
 ---
-title: "Connecting MCP Servers"
-description: "Configure MCP (Model Context Protocol) servers to enhance your coding agents within Vibe Kanban with additional tools and capabilities."
+title: "连接 MCP 服务器"
+description: "配置 MCP（模型上下文协议）服务器，以通过附加工具和功能增强 Vibe Kanban 中的编程代理。"
 ---
 
 
 <Note>
-This page covers configuring MCP servers **within** Vibe Kanban for your coding agents. For connecting external MCP clients to Vibe Kanban's MCP server, see the [Vibe Kanban MCP Server](/integrations/vibe-kanban-mcp-server) guide.
+本页面介绍在 Vibe Kanban **内**为编程代理配置 MCP 服务器。有关将外部 MCP 客户端连接到 Vibe Kanban 的 MCP 服务器，请参阅 [Vibe Kanban MCP 服务器](/integrations/vibe-kanban-mcp-server)指南。
 </Note>
 
-## Overview
+## 概述
 
-MCP servers provide additional functionality to coding agents through standardized protocols. You can configure different MCP servers for each coding agent in Vibe Kanban, giving them access to specialized tools like browser automation, access to remote logs, error tracking via Sentry, or documentation from Notion.
+MCP 服务器通过标准化协议为编程代理提供附加功能。您可以在 Vibe Kanban 中为每个编程代理配置不同的 MCP 服务器，使它们能够访问专门的工具，如浏览器自动化、访问远程日志、通过 Sentry 进行错误跟踪或来自 Notion 的文档。
 
-## Accessing MCP Server Configuration
+## 访问 MCP 服务器配置
 
-1. Navigate to **Settings** in the Vibe Kanban interface
-2. Click on **MCP Servers** in the settings menu
-3. Select the coding agent you want to configure MCP servers for
-
-<Frame>
-<img src="/images/vk-mcp-server-config.jpeg" alt="MCP Server configuration page showing available servers and one-click installation options" />
-</Frame>
-
-## Popular MCP Servers
-
-Vibe Kanban provides one-click installation for popular MCP servers.
+1. 在 Vibe Kanban 界面中导航到**设置**
+2. 在设置菜单中点击 **MCP 服务器**
+3. 选择您要为其配置 MCP 服务器的编程代理
 
 <Frame>
-<img src="/images/vk-popular-mcp-servers.png" alt="Popular MCP servers available for one-click installation" />
+<img src="/images/vk-mcp-server-config.jpeg" alt="MCP 服务器配置页面显示可用服务器和一键安装选项" />
 </Frame>
 
-## Adding Custom MCP Servers
+## 流行的 MCP 服务器
 
-You can also add your own MCP servers by configuring them manually:
+Vibe Kanban 为流行的 MCP 服务器提供一键安装。
+
+<Frame>
+<img src="/images/vk-popular-mcp-servers.png" alt="可用于一键安装的流行 MCP 服务器" />
+</Frame>
+
+## 添加自定义 MCP 服务器
+
+您还可以通过手动配置来添加自己的 MCP 服务器：
 
 <Steps>
-<Step title="Select Coding Agent">
-Choose the coding agent you want to configure MCP servers for from the MCP Servers settings page.
+<Step title="选择编程代理">
+从 MCP 服务器设置页面选择您要为其配置 MCP 服务器的编程代理。
 </Step>
 
-<Step title="Update Server Configuration JSON">
-In the Server Configuration JSON field displayed in the UI, add your custom MCP server configuration. The JSON will show the current configuration for the selected agent, and you can modify it to include additional servers.
+<Step title="更新服务器配置 JSON">
+在 UI 中显示的服务器配置 JSON 字段中，添加您的自定义 MCP 服务器配置。JSON 将显示所选代理的当前配置，您可以修改它以包含附加服务器。
 
-Example addition:
+示例添加：
 ```json
 {
   "mcpServers": {
@@ -59,31 +59,31 @@ Example addition:
 ```
 </Step>
 
-<Step title="Save and Test">
-After updating the JSON configuration:
+<Step title="保存并测试">
+更新 JSON 配置后：
 
-1. Click "Save Settings" to apply changes
-2. Test the configuration by using the agent with MCP functionality
-3. Check agent logs for any connection issues
+1. 点击"保存设置"以应用更改
+2. 通过使用具有 MCP 功能的代理来测试配置
+3. 检查代理日志以查找任何连接问题
 
 <Check>
-These changes update the global configuration file of the coding agent and will persist even if you stop using Vibe Kanban.
+这些更改会更新编程代理的全局配置文件，即使您停止使用 Vibe Kanban，这些更改也会保留。
 </Check>
 </Step>
 </Steps>
 
-## Best Practices
+## 最佳实践
 
 <Tip>
-**Server Selection**: Choose MCP servers that complement your coding agent's primary function. For example, use Playwright for agents focused on web development.
+**服务器选择**：选择补充编程代理主要功能的 MCP 服务器。例如，对于专注于 Web 开发的代理，使用 Playwright。
 </Tip>
 
 <Tip>
-**Limit MCP Servers**: Avoid adding too many MCP servers to a single coding agent. Too many servers and tools will degrade the effectiveness of coding agents by overwhelming them with options.
+**限制 MCP 服务器**：避免向单个编程代理添加过多的 MCP 服务器。过多的服务器和工具会通过大量选项淹没代理，从而降低编程代理的有效性。
 </Tip>
 
-## Next Steps
+## 下一步
 
-- Explore the [Agent Configurations](/configuration-customisation/agent-configurations) guide for advanced agent setup
-- Learn about [Creating Tasks](/core-features/creating-tasks) with enhanced MCP capabilities
-- Check out [Supported Coding Agents](/supported-coding-agents) for agent-specific features
+- 探索[代理配置](/configuration-customisation/agent-configurations)指南以进行高级代理设置
+- 了解如何使用增强的 MCP 功能[创建任务](/core-features/creating-tasks)
+- 查看[支持的编程代理](/supported-coding-agents)以了解特定于代理的功能

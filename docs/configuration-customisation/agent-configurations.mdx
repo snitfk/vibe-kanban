@@ -1,43 +1,43 @@
 ---
-title: "Agent Profiles & Configuration"
-description: "Configure and customise coding agent variants with different settings for planning, models, and sandbox permissions"
+title: "代理配置文件和配置"
+description: "为规划、模型和沙箱权限等不同设置配置和自定义编程代理变体"
 ---
 
-Agent profiles let you define multiple named variants for each supported coding agent. Variants capture configuration differences like planning mode, model choice, and sandbox permissions that you can quickly select when creating attempts.
+代理配置文件允许您为每个支持的编程代理定义多个命名变体。变体捕获配置差异，如规划模式、模型选择和沙箱权限，您可以在创建尝试时快速选择。
 
 <Info>
-Agent profiles are used throughout Vibe Kanban wherever agents run: onboarding, default settings, attempt creation, and follow-ups.
+代理配置文件在 Vibe Kanban 中运行代理的任何地方使用：入门、默认设置、尝试创建和后续操作。
 </Info>
 
-## Configuration Access
+## 配置访问
 
-You can configure agent profiles in two ways through Settings → Agents:
+您可以通过设置 → 代理以两种方式配置代理配置文件：
 
 <Tabs>
-<Tab title="Form Editor">
-  Use the guided interface with form fields for each agent setting.
+<Tab title="表单编辑器">
+  使用带有每个代理设置的表单字段的引导界面。
 
   <Frame>
-  <img src="/images/coding-agent-configurations.png" alt="Agent configuration form editor interface" />
+  <img src="/images/coding-agent-configurations.png" alt="代理配置表单编辑器界面" />
   </Frame>
 </Tab>
 
-<Tab title="JSON Editor">
-  Edit the underlying `profiles.json` file directly for advanced configurations.
+<Tab title="JSON 编辑器">
+  直接编辑底层 `profiles.json` 文件以进行高级配置。
 
   <Frame>
-  <img src="/images/coding-agent-configurations-json.png" alt="JSON editor for agent configurations" />
+  <img src="/images/coding-agent-configurations-json.png" alt="代理配置的 JSON 编辑器" />
   </Frame>
 </Tab>
 </Tabs>
 
 <Note>
-The configuration page displays the exact file path where your settings are stored. Vibe Kanban saves only your overrides whilst preserving built-in defaults.
+配置页面显示存储设置的确切文件路径。Vibe Kanban 仅保存您的覆盖，同时保留内置默认值。
 </Note>
 
-## Configuration Structure
+## 配置结构
 
-The profiles configuration uses a JSON structure with an `executors` object containing agent variants:
+配置文件配置使用包含代理变体的 `executors` 对象的 JSON 结构：
 
 ```json profiles.json
 {
@@ -60,172 +60,172 @@ The profiles configuration uses a JSON structure with an `executors` object cont
 ```
 
 <AccordionGroup>
-<Accordion title="Structure Rules">
-  - **Variant names**: Case-insensitive and normalised to SCREAMING_SNAKE_CASE
-  - **DEFAULT variant**: Reserved and always present for each agent
-  - **Custom variants**: Add new variants like `PLAN`, `FLASH`, `HIGH` as needed
-  - **Built-in protection**: Cannot remove built-in executors, but can override values
+<Accordion title="结构规则">
+  - **变体名称**：不区分大小写并规范化为 SCREAMING_SNAKE_CASE
+  - **DEFAULT 变体**：保留并始终存在于每个代理
+  - **自定义变体**：根据需要添加新变体，如 `PLAN`、`FLASH`、`HIGH`
+  - **内置保护**：无法删除内置执行器，但可以覆盖值
 </Accordion>
 
-<Accordion title="Configuration Inheritance">
-  - Your custom settings override built-in defaults
-  - Built-in configurations remain available as fallbacks
-  - Each variant contains a complete configuration object for its agent
+<Accordion title="配置继承">
+  - 您的自定义设置会覆盖内置默认值
+  - 内置配置仍可用作后备
+  - 每个变体包含其代理的完整配置对象
 </Accordion>
 </AccordionGroup>
 
-## Agent Configuration Options
+## 代理配置选项
 
 <Tabs>
 <Tab title="CLAUDE_CODE">
   <ParamField path="plan" type="boolean">
-  Enable planning mode for complex tasks
+  为复杂任务启用规划模式
   </ParamField>
 
   <ParamField path="claude_code_router" type="boolean">
-  Route requests across multiple Claude Code instances
+  跨多个 Claude Code 实例路由请求
   </ParamField>
 
   <ParamField path="dangerously_skip_permissions" type="boolean">
-  Skip permission prompts (use with caution)
+  跳过权限提示（谨慎使用）
   </ParamField>
 
-  [View full CLI reference →](https://docs.anthropic.com/en/docs/claude-code/cli-reference#cli-flags)
+  [查看完整 CLI 参考 →](https://docs.anthropic.com/en/docs/claude-code/cli-reference#cli-flags)
 </Tab>
 
 <Tab title="GEMINI">
   <ParamField path="model" type="string">
-  Choose model variant: `"default"` or `"flash"`
+  选择模型变体：`"default"` 或 `"flash"`
   </ParamField>
 
   <ParamField path="yolo" type="boolean">
-  Run without confirmations
+  无需确认运行
   </ParamField>
 
-  [View full CLI reference →](https://google-gemini.github.io/gemini-cli/)
+  [查看完整 CLI 参考 →](https://google-gemini.github.io/gemini-cli/)
 </Tab>
 
 <Tab title="AMP">
   <ParamField path="dangerously_allow_all" type="boolean">
-  Allow all actions without restrictions (unsafe)
+  允许所有操作而不受限制（不安全）
   </ParamField>
 
-  [View full documentation →](https://ampcode.com/manual#cli)
+  [查看完整文档 →](https://ampcode.com/manual#cli)
 </Tab>
 
 <Tab title="CODEX">
   <ParamField path="sandbox" type="string">
-  Execution environment: `"read-only"`, `"workspace-write"`, or `"danger-full-access"`
+  执行环境：`"read-only"`、`"workspace-write"` 或 `"danger-full-access"`
   </ParamField>
 
   <ParamField path="approval" type="string">
-  Approval level: `"untrusted"`, `"on-failure"`, `"on-request"`, or `"never"`
+  批准级别：`"untrusted"`、`"on-failure"`、`"on-request"` 或 `"never"`
   </ParamField>
 
   <ParamField path="model_reasoning_effort" type="string">
-  Reasoning depth: `"low"`, `"medium"`, or `"high"`
+  推理深度：`"low"`、`"medium"` 或 `"high"`
   </ParamField>
 
   <ParamField path="model_reasoning_summary" type="string">
-  Summary style: `"auto"`, `"concise"`, `"detailed"`, or `"none"`
+  摘要样式：`"auto"`、`"concise"`、`"detailed"` 或 `"none"`
   </ParamField>
 
-  [View full documentation →](https://github.com/openai/codex)
+  [查看完整文档 →](https://github.com/openai/codex)
 </Tab>
 
 <Tab title="CURSOR">
   <ParamField path="force" type="boolean">
-  Force execution without confirmation
+  强制执行而不确认
   </ParamField>
 
   <ParamField path="model" type="string">
-  Specify model to use
+  指定要使用的模型
   </ParamField>
 
-  [View full CLI reference →](https://docs.cursor.com/en/cli/reference/parameters)
+  [查看完整 CLI 参考 →](https://docs.cursor.com/en/cli/reference/parameters)
 </Tab>
 
 <Tab title="OPENCODE">
   <ParamField path="model" type="string">
-  Specify model to use
+  指定要使用的模型
   </ParamField>
 
   <ParamField path="agent" type="string">
-  Choose agent type
+  选择代理类型
   </ParamField>
 
-  [View full documentation →](https://opencode.ai/docs/cli/#flags-1)
+  [查看完整文档 →](https://opencode.ai/docs/cli/#flags-1)
 </Tab>
 
 <Tab title="QWEN_CODE">
   <ParamField path="yolo" type="boolean">
-  Run without confirmations
+  无需确认运行
   </ParamField>
 
-  [View full documentation →](https://qwenlm.github.io/qwen-code-docs/en/cli/index)
+  [查看完整文档 →](https://qwenlm.github.io/qwen-code-docs/en/cli/index)
 </Tab>
 
 <Tab title="DROID">
   <ParamField path="autonomy" type="string">
-  Permission level: `"normal"`, `"low"`, `"medium"`, `"high"`, or `"skip-permissions-unsafe"`
+  权限级别：`"normal"`、`"low"`、`"medium"`、`"high"` 或 `"skip-permissions-unsafe"`
   </ParamField>
 
   <ParamField path="model" type="string">
-  Specify which model to use
+  指定要使用的模型
   </ParamField>
 
   <ParamField path="reasoning_effort" type="string">
-  Reasoning depth: `"off"`, `"low"`, `"medium"`, or `"high"`
+  推理深度：`"off"`、`"low"`、`"medium"` 或 `"high"`
   </ParamField>
 
-  [View full documentation →](https://docs.factory.ai/factory-cli/getting-started/overview)
+  [查看完整文档 →](https://docs.factory.ai/factory-cli/getting-started/overview)
 </Tab>
 </Tabs>
 
-### Universal Options
+### 通用选项
 
-These options work across multiple agent types:
+这些选项适用于多种代理类型：
 
 <ParamField path="append_prompt" type="string | null">
-Text appended to the system prompt
+追加到系统提示的文本
 </ParamField>
 
 <ParamField path="base_command_override" type="string | null">
-Override the underlying CLI command
+覆盖底层 CLI 命令
 </ParamField>
 
 <ParamField path="additional_params" type="string[] | null">
-Additional CLI arguments to pass
+要传递的其他 CLI 参数
 </ParamField>
 
 <Warning>
-Options prefixed with "dangerously_" bypass safety confirmations and can perform destructive actions. Use with extreme caution.
+以"dangerously_"为前缀的选项会绕过安全确认并可以执行破坏性操作。请极其谨慎地使用。
 </Warning>
 
-## Using Agent Configurations
+## 使用代理配置
 
 <CardGroup cols={2}>
-<Card title="Default Configuration" icon="gear">
-  Set your default agent and variant in **Settings → General → Default Agent Configuration** for consistent behaviour across all attempts.
+<Card title="默认配置" icon="gear">
+  在**设置 → 常规 → 默认代理配置**中设置默认代理和变体，以在所有尝试中实现一致的行为。
 </Card>
 
-<Card title="Per-Attempt Selection" icon="rocket">
-  Override defaults when creating attempts by selecting different agent/variant combinations in the attempt dialogue.
+<Card title="每次尝试选择" icon="rocket">
+  在尝试对话框中通过选择不同的代理/变体组合创建尝试时覆盖默认值。
 </Card>
 </CardGroup>
 
-## Related Configuration
+## 相关配置
 
 <Note>
-MCP (Model Context Protocol) servers are configured separately under **Settings → MCP Servers** but work alongside agent profiles to extend functionality.
+MCP（模型上下文协议）服务器在**设置 → MCP 服务器**下单独配置，但与代理配置文件一起工作以扩展功能。
 </Note>
 
 <CardGroup cols={2}>
-<Card title="MCP Server Configuration" icon="server" href="/integrations/mcp-server-configuration">
-  Configure MCP servers within Vibe Kanban for your coding agents
+<Card title="MCP 服务器配置" icon="server" href="/integrations/mcp-server-configuration">
+  在 Vibe Kanban 中为编程代理配置 MCP 服务器
 </Card>
 
-<Card title="Vibe Kanban MCP Server" icon="plug" href="/integrations/vibe-kanban-mcp-server">
-  Connect external MCP clients to Vibe Kanban's MCP server
+<Card title="Vibe Kanban MCP 服务器" icon="plug" href="/integrations/vibe-kanban-mcp-server">
+  将外部 MCP 客户端连接到 Vibe Kanban 的 MCP 服务器
 </Card>
 </CardGroup>

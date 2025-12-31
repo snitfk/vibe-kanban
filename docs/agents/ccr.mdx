@@ -1,103 +1,103 @@
 ---
 title: "CCR (Claude Code Router)"
-description: "Set up CCR to orchestrate multiple Claude Code models"
+description: "设置 CCR 以协调多个 Claude Code 模型"
 icon: https://www.vibekanban.com/images/logos/claude.svg#"
 ---
 
-CCR (Claude Code Router) lets you route coding prompts across different LLM providers and models, and select specialised models for specific tasks like long context, background work, or image understanding.
+CCR（Claude Code Router）允许您跨不同的 LLM 提供商和模型路由编程提示，并为特定任务选择专门的模型，如长上下文、后台工作或图像理解。
 
 <Warning>
-CCR is not affiliated with, endorsed by, or connected to Claude Code or Anthropic. It is a third-party tool.
+CCR 不隶属于、不被认可或不与 Claude Code 或 Anthropic 有任何关联。它是一个第三方工具。
 </Warning>
 
-## Installation
-CCR is available via `npx` – no separate installation required.
+## 安装
+CCR 可通过 `npx` 获得——无需单独安装。
 
 ```bash
 npx -y @musistudio/claude-code-router ui
 ```
 
-This launches the CCR local UI where you configure providers and models.
+这将启动 CCR 本地 UI，您可以在其中配置提供商和模型。
 
-## Authentication
-Authenticate and configure CCR outside of Vibe Kanban. Follow the instructions on the CCR GitHub repo:
+## 认证
+在 Vibe Kanban 之外对 CCR 进行认证和配置。按照 CCR GitHub 仓库上的说明操作：
 
-- GitHub: https://github.com/musistudio/claude-code-router
+- GitHub：https://github.com/musistudio/claude-code-router
 
-You'll add providers, set API keys, and register model names in the CCR UI or via CCR's JSON configuration (see the CCR repo for the schema and file location).
+您将添加提供商、设置 API 密钥并在 CCR UI 中注册模型名称或通过 CCR 的 JSON 配置（有关架构和文件位置，请参阅 CCR 仓库）。
 
-## Configure CCR (Providers and Models)
+## 配置 CCR（提供商和模型）
 
-Configure CCR either via the UI or JSON config.
+通过 UI 或 JSON 配置来配置 CCR。
 
-In the CCR UI (`npx -y @musistudio/claude-code-router ui`):
+在 CCR UI（`npx -y @musistudio/claude-code-router ui`）中：
 
-1) Add providers
-- Choose a provider (e.g., `openrouter`, `deepseek`, etc.).
-- Enter the required API key(s) and settings for that provider.
+1) 添加提供商
+- 选择提供商（例如，`openrouter`、`deepseek` 等）。
+- 输入该提供商所需的 API 密钥和设置。
 
-2) Add models
-- For each provider, register the model identifier (e.g., `moonshotai/kimi-k2-0905`, `deepseek-chat`).
-- CCR supports configuring different models for specific cases:
-  - `default`: general coding
-  - `background`: lightweight/background operations
-  - `think`: models that support "thinking" modes
-  - `longContext`: very long inputs/files
-  - `webSearch`: models that support web/tool use
-  - `image`: models with vision capabilities
+2) 添加模型
+- 对于每个提供商，注册模型标识符（例如，`moonshotai/kimi-k2-0905`、`deepseek-chat`）。
+- CCR 支持为特定情况配置不同的模型：
+  - `default`：通用编程
+  - `background`：轻量级/后台操作
+  - `think`：支持"思考"模式的模型
+  - `longContext`：非常长的输入/文件
+  - `webSearch`：支持 web/工具使用的模型
+  - `image`：具有视觉功能的模型
 
-Note: not all models support web search, thinking, or images. Choose models accordingly in the CCR UI.
+注意：并非所有模型都支持 web 搜索、思考或图像。在 CCR UI 中相应地选择模型。
 
-### Configure via JSON (optional)
-CCR can also be configured via its JSON configuration file. Refer to the CCR GitHub documentation for the exact schema, keys, and file location. Define providers (with API keys) and map the model cases (`default`, `background`, `think`, `longContext`, `webSearch`, `image`) to specific provider/model pairs.
+### 通过 JSON 配置（可选）
+CCR 也可以通过其 JSON 配置文件进行配置。有关确切的架构、键和文件位置，请参阅 CCR GitHub 文档。定义提供商（使用 API 密钥）并将模型情况（`default`、`background`、`think`、`longContext`、`webSearch`、`image`）映射到特定的提供商/模型对。
 
-### Example: OpenRouter provider configured in CCR UI
-
-<Frame>
-<img src="/images/ccr-openrouter-ui.png" alt="OpenRouter configured in CCR UI" />
-</Frame>
-
-### Example: CCR model mapping (default/background/think/etc.)
+### 示例：在 CCR UI 中配置的 OpenRouter 提供商
 
 <Frame>
-<img src="/images/ccr-config-example.png" alt="CCR models configuration example" />
+<img src="/images/ccr-openrouter-ui.png" alt="在 CCR UI 中配置的 OpenRouter" />
 </Frame>
 
-## Configure Vibe Kanban
+### 示例：CCR 模型映射（default/background/think/等）
 
-Vibe Kanban does not ship a default configuration for CCR. Add configurations to the existing Claude Code agent:
+<Frame>
+<img src="/images/ccr-config-example.png" alt="CCR 模型配置示例" />
+</Frame>
 
-1) Open the "Coding Agent Configurations" page.
-2) Add a new configuration for the Claude Code agent (or edit an existing one).
-3) Enable the `claude_code_router` checkbox.
-4) Optionally set a model string to target a specific CCR provider/model.
+## 配置 Vibe Kanban
 
-See the [Agent Profiles & Variants](/configuration-customisation/agent-configurations) guide for managing agent configurations.
+Vibe Kanban 不附带 CCR 的默认配置。将配置添加到现有的 Claude Code 代理：
 
-Model string format: `<provider>,<model-name>`
+1) 打开"编程代理配置"页面。
+2) 为 Claude Code 代理添加新配置（或编辑现有配置）。
+3) 启用 `claude_code_router` 复选框。
+4) 可选择设置模型字符串以针对特定的 CCR 提供商/模型。
 
-Examples:
+有关管理代理配置的信息，请参阅[代理配置文件和变体](/configuration-customisation/agent-configurations)指南。
+
+模型字符串格式：`<provider>,<model-name>`
+
+示例：
 ```text
 openrouter,moonshotai/kimi-k2-0905
 deepseek,deepseek-chat
 ```
 
-Tips:
-- Create multiple configurations if you want easy switching between different models.
-- Leave the model string empty if you want CCR to use its own routing based on your CCR UI configuration (e.g., its `default`/`longContext`/etc. mappings).
+提示：
+- 如果您想在不同模型之间轻松切换，请创建多个配置。
+- 如果您希望 CCR 根据您的 CCR UI 配置使用自己的路由（例如，其 `default`/`longContext`/等映射），请将模型字符串留空。
 
-### Example: Claude Code agent configuration in Vibe Kanban
+### 示例：Vibe Kanban 中的 Claude Code 代理配置
 
 <Frame>
-<img src="/images/vk-ccr-agent-config.png" alt="Claude Code agent configuration in Vibe Kanban" />
+<img src="/images/vk-ccr-agent-config.png" alt="Vibe Kanban 中的 Claude Code 代理配置" />
 </Frame>
 
-## Using CCR in Vibe Kanban
+## 在 Vibe Kanban 中使用 CCR
 
-When creating a Task Attempt, select the coding agent and configuration: choose the Claude Code agent, then pick one of your CCR-enabled configurations.
+创建任务尝试时，选择编程代理和配置：选择 Claude Code 代理，然后选择您启用 CCR 的配置之一。
 
-## Troubleshooting
+## 故障排除
 
-- Authentication errors: verify your API keys/provider settings in CCR (via UI or JSON config).
-- Model not found: confirm the model identifier is correct for the chosen provider.
-- Missing features (webSearch/think/image): switch to a model that supports the capability and update your CCR mapping (via UI or JSON config).
+- 认证错误：通过 CCR（通过 UI 或 JSON 配置）验证您的 API 密钥/提供商设置。
+- 找不到模型：确认所选提供商的模型标识符正确。
+- 缺少功能（webSearch/think/image）：切换到支持该功能的模型，并更新您的 CCR 映射（通过 UI 或 JSON 配置）。

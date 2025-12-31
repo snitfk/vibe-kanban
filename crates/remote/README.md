@@ -1,10 +1,10 @@
-# Remote service
+# 远程服务
 
-The `remote` crate contains the implementation of the Vibe Kanban hosted API.
+`remote` crate 包含 Vibe Kanban 托管 API 的实现。
 
-## Prerequisites
+## 前置要求
 
-Create a `.env.remote` file in the repository root:
+在仓库根目录创建 `.env.remote` 文件:
 
 ```env
 VIBEKANBAN_REMOTE_JWT_SECRET=your_base64_encoded_secret
@@ -15,18 +15,18 @@ GOOGLE_OAUTH_CLIENT_ID=your_google_web_app_client_id
 GOOGLE_OAUTH_CLIENT_SECRET=your_google_web_app_client_secret
 ```
 
-Generate `VIBEKANBAN_REMOTE_JWT_SECRET` once using `openssl rand -base64 48` and copy the value into `.env.remote`.
+使用 `openssl rand -base64 48` 生成一次 `VIBEKANBAN_REMOTE_JWT_SECRET` 并将值复制到 `.env.remote`。
 
-At least one OAuth provider (GitHub or Google) must be configured.
+必须至少配置一个 OAuth 提供商(GitHub 或 Google)。
 
-## Run the stack locally 
+## 在本地运行堆栈
 
 ```bash
 docker compose --env-file .env.remote -f docker-compose.yml up --build
 ```
-Exposes the API on `http://localhost:8081`. The Postgres service is available at `postgres://remote:remote@localhost:5432/remote`.
+在 `http://localhost:8081` 上公开 API。Postgres 服务在 `postgres://remote:remote@localhost:5432/remote` 可用。
 
-## Run Vibe Kanban 
+## 运行 Vibe Kanban
 
 ```bash
 export VK_SHARED_API_BASE=http://localhost:8081
